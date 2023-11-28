@@ -6,7 +6,6 @@ import { Button } from "@mui/material";
 import getWithAxios from "../../utils/getCryptoListAxios";
 import styles from "./WrapperForInputs.module.css";
 import swap from "../../assets/swap.svg";
-import VirtualisedInput from "../CryptoInput/VirtualizedInput";
 
 const WrapperForInputs = () => {
   const [selectedCrypto1, setSelectedCrypto1] = useState("btc");
@@ -50,7 +49,7 @@ const WrapperForInputs = () => {
       <Button onClick={handleSwapClick}>
         <img src={swap} alt="icon" style={{ width: "24px", height: "24px" }} />
       </Button>
-      <VirtualisedInput
+      <CryptoInput
         ticker={selectedCrypto2}
         tickerIconURL={rightCryptoURL}
         onCryptoChange={(value) => setSelectedCrypto2(value)}

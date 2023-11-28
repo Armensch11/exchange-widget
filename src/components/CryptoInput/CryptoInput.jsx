@@ -2,13 +2,12 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   TextField,
-  Select,
   InputAdornment,
   FormControl,
   InputLabel,
 } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
 
+import VirtualizedSelect from "../VirtualizedSelect/VirtualizedSelect";
 const CryptoInput = ({
   ticker,
   tickerIconURL,
@@ -22,11 +21,11 @@ const CryptoInput = ({
     setAmount(event.target.value);
   };
 
-  const handleCryptoChange = (event) => {
-    // setSelectedCrypto(event.target.value);
+  // const handleCryptoChange = (event) => {
+  //   // setSelectedCrypto(event.target.value);
 
-    onCryptoChange(event.target.value);
-  };
+  //   onCryptoChange(event.target.value);
+  // };
 
   return (
     <FormControl variant="outlined" fullWidth>
@@ -46,7 +45,7 @@ const CryptoInput = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Select
+              {/* <Select
                 labelId="crypto-select-label"
                 id="crypto-select"
                 value={ticker}
@@ -78,7 +77,13 @@ const CryptoInput = ({
                     {el.ticker.toUpperCase()}
                   </MenuItem>
                 ))}
-              </Select>
+              </Select> */}
+              <VirtualizedSelect
+                ticker={ticker}
+                tickerIconURL={tickerIconURL}
+                onCryptoChange={onCryptoChange}
+                listOfCurrencies={listOfCurrencies}
+              />
             </InputAdornment>
           ),
         }}

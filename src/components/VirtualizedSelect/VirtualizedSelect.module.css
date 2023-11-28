@@ -1,0 +1,12 @@
+.wrapperSelect {
+  min-width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: none;
+  /* border: 1px solid red; */
+}
+.wrapper__image {
+  margin-right: 8px;
+}

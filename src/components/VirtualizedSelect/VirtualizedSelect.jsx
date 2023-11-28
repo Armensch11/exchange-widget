@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import Select from "react-select";
+import styles from "./VirtualizedSelect.module.css";
 
-const VirtualizedInput = ({
+const VirtualizedSelect = ({
   ticker,
   tickerIconURL,
   onCryptoChange,
@@ -13,8 +14,8 @@ const VirtualizedInput = ({
   }));
 
   return (
-    <div>
-      <img
+    <div className={styles.wrapperSelect}>
+      <img className={styles.wrapper__image}
         src={tickerIconURL}
         alt="icon"
         style={{ width: "24px", height: "24px" }}
@@ -24,13 +25,19 @@ const VirtualizedInput = ({
         value={{ value: ticker, label: ticker.toUpperCase() }}
         onChange={(selectedOption) => onCryptoChange(selectedOption.value)}
         isSearchable={true}
-        style={{ height: "300px" }}
+        styles={{
+          control: (baseStyles) => ({
+            ...baseStyles,
+            border: "none",
+            backgroundColor: "#F6F7F8",
+          }),
+        }}
       />
     </div>
   );
 };
 
-VirtualizedInput.propTypes = {
+VirtualizedSelect.propTypes = {
   ticker: PropTypes.string.isRequired,
   tickerIconURL: PropTypes.string.isRequired,
   onCryptoChange: PropTypes.func.isRequired,
@@ -41,4 +48,4 @@ VirtualizedInput.propTypes = {
   ).isRequired,
 };
 
-export default VirtualizedInput;
+export default VirtualizedSelect;
