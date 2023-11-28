@@ -1,47 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   TextField,
   Select,
-  MenuItem,
   InputAdornment,
   FormControl,
   InputLabel,
-  Icon,
 } from "@mui/material";
-import getWithAxios from "../../utils/getCryptoListAxios";
+import MenuItem from "@mui/material/MenuItem";
 
-const CryptoInput = ({ ticker, tickerIconURL }) => {
+const CryptoInput = ({
+  ticker,
+  tickerIconURL,
+  onCryptoChange,
+  listOfCurrencies,
+}) => {
   const [amount, setAmount] = useState(0);
-  const [selectedCrypto, setSelectedCrypto] = useState(ticker);
-  const [listOfCurrencies, setListOfCurrencies] = useState([]);
-  const [tickerIcon, setTickerIcon] = useState(tickerIconURL);
-  //const [selectedLeft, setSelectedLeft] = useState("");
+  //const [selectedCrypto, setSelectedCrypto] = useState(ticker);
+
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };
 
   const handleCryptoChange = (event) => {
-    setSelectedCrypto(event.target.value);
-    const link = listOfCurrencies.filter(
-      (el) => el.ticker === event.target.value
-    );
+    // setSelectedCrypto(event.target.value);
 
-    setTickerIcon(link[0].image);
+    onCryptoChange(event.target.value);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const currencies = await getWithAxios();
-        setListOfCurrencies(currencies);
-      } catch (error) {
-        console.error("Error:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <FormControl variant="outlined" fullWidth>
@@ -53,19 +38,35 @@ const CryptoInput = ({ ticker, tickerIconURL }) => {
         fullWidth
         value={amount}
         onChange={handleAmountChange}
+        sx={{
+          padding: "none",
+          backgroundColor: "#F6F7F8",
+          borderColor: "#E3EBEF",
+        }}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Icon></Icon>
               <Select
                 labelId="crypto-select-label"
                 id="crypto-select"
-                value={selectedCrypto}
+                value={ticker}
                 onChange={handleCryptoChange}
+                MenuProps={{
+                  PaperProps: {
+                    style: {
+                      maxHeight: 150,
+                    },
+                  },
+                }}
+                sx={{
+                  boxShadow: "none",
+                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
+                  margin: "0",
+                }}
                 startAdornment={
                   <InputAdornment position="start">
                     <img
-                      src={tickerIcon}
+                      src={tickerIconURL}
                       alt="icon"
                       style={{ width: "24px", height: "24px" }}
                     />
@@ -88,5 +89,7 @@ const CryptoInput = ({ ticker, tickerIconURL }) => {
 CryptoInput.propTypes = {
   ticker: PropTypes.string.isRequired,
   tickerIconURL: PropTypes.string.isRequired,
+  onCryptoChange: PropTypes.func.isRequired,
+  listOfCurrencies: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 export default CryptoInput;
