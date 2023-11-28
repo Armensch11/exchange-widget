@@ -5,7 +5,7 @@ import {
   FormControl,
   InputLabel,
 } from "@mui/material";
-
+import lineVertical from "../../assets/lineVertical.svg";
 import VirtualizedSelect from "../VirtualizedSelect/VirtualizedSelect";
 const CryptoInput = ({
   ticker,
@@ -37,6 +37,7 @@ const CryptoInput = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
+              <img src={lineVertical} alt="vertical line" />
               <VirtualizedSelect
                 ticker={ticker}
                 tickerIconURL={tickerIconURL}

@@ -24,7 +24,14 @@ const AddressInput = () => {
           width: "100%",
         }}
       >
-        <TextField fullWidth sx={{ marginRight: "36px" }}></TextField>
+        <TextField
+          fullWidth
+          sx={{
+            marginRight: "36px",
+            backgroundColor: "#F6F7F8",
+            borderColor: "#E3EBEF",
+          }}
+        ></TextField>
         <Button variant="contained" sx={{ width: "205px" }}>
           exchange
         </Button>
