@@ -15,20 +15,12 @@ const CryptoInput = ({
   value,
   onChange,
 }) => {
-  //const [selectedCrypto, setSelectedCrypto] = useState(ticker);
-
   const handleAmountChange = (event) => {
     onChange(+event.target.value);
   };
 
-  // const handleCryptoChange = (event) => {
-  //   // setSelectedCrypto(event.target.value);
-
-  //   onCryptoChange(event.target.value);
-  // };
-
   return (
-    <FormControl variant="outlined" fullWidth>
+    <FormControl variant="outlined" fullWidth sx={{ width: "450px" }}>
       <InputLabel htmlFor="crypto-amount"></InputLabel>
       <TextField
         id="crypto-amount"
@@ -45,39 +37,6 @@ const CryptoInput = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              {/* <Select
-                labelId="crypto-select-label"
-                id="crypto-select"
-                value={ticker}
-                onChange={handleCryptoChange}
-                MenuProps={{
-                  PaperProps: {
-                    style: {
-                      maxHeight: 150,
-                    },
-                  },
-                }}
-                sx={{
-                  boxShadow: "none",
-                  ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                  margin: "0",
-                }}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <img
-                      src={tickerIconURL}
-                      alt="icon"
-                      style={{ width: "24px", height: "24px" }}
-                    />
-                  </InputAdornment>
-                }
-              >
-                {listOfCurrencies.map((el) => (
-                  <MenuItem key={el.hash} value={el.ticker}>
-                    {el.ticker.toUpperCase()}
-                  </MenuItem>
-                ))}
-              </Select> */}
               <VirtualizedSelect
                 ticker={ticker}
                 tickerIconURL={tickerIconURL}
@@ -95,7 +54,7 @@ CryptoInput.propTypes = {
   ticker: PropTypes.string.isRequired,
   tickerIconURL: PropTypes.string.isRequired,
   onCryptoChange: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   listOfCurrencies: PropTypes.arrayOf(PropTypes.any).isRequired,
   value: PropTypes.number,
 };

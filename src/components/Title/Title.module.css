@@ -1,0 +1,8 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 16px;
+  margin-bottom: 48px;
+}
