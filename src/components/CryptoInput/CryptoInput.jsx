@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import {
   TextField,
@@ -13,12 +12,13 @@ const CryptoInput = ({
   tickerIconURL,
   onCryptoChange,
   listOfCurrencies,
+  value,
+  onChange,
 }) => {
-  const [amount, setAmount] = useState(0);
   //const [selectedCrypto, setSelectedCrypto] = useState(ticker);
 
   const handleAmountChange = (event) => {
-    setAmount(event.target.value);
+    onChange(+event.target.value);
   };
 
   // const handleCryptoChange = (event) => {
@@ -35,7 +35,7 @@ const CryptoInput = ({
         type="number"
         variant="outlined"
         fullWidth
-        value={amount}
+        value={value}
         onChange={handleAmountChange}
         sx={{
           padding: "none",
@@ -95,6 +95,8 @@ CryptoInput.propTypes = {
   ticker: PropTypes.string.isRequired,
   tickerIconURL: PropTypes.string.isRequired,
   onCryptoChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   listOfCurrencies: PropTypes.arrayOf(PropTypes.any).isRequired,
+  value: PropTypes.number,
 };
 export default CryptoInput;

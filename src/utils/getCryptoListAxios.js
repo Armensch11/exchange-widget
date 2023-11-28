@@ -1,6 +1,6 @@
 import axios from "axios";
 import hash from "object-hash";
-const getWithAxios = () => {
+const getWithAxios =  () => {
   const config = {
     method: "get",
     maxBodyLength: Infinity,
