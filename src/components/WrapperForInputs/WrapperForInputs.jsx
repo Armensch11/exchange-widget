@@ -91,8 +91,23 @@ const WrapperForInputs = () => {
         onCryptoChange={(value) => setSelectedCrypto1(value)}
         listOfCurrencies={listOfCurrencies}
       />
-      <Button onClick={handleSwapClick}>
-        <img src={swap} alt="icon" style={{ width: "24px", height: "24px" }} />
+      <Button
+        onClick={handleSwapClick}
+        sx={{
+          "@media (max-width: 767px)": {
+            transform: "rotate(90deg)",
+            alignSelf: "flex-end",
+          },
+        }}
+      >
+        <img
+          src={swap}
+          alt="icon"
+          style={{
+            width: "24px",
+            height: "24px",
+          }}
+        />
       </Button>
       <CryptoInput
         ticker={selectedCrypto2}

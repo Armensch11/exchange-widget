@@ -22,6 +22,11 @@ const AddressInput = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           width: "100%",
+          "@media (max-width: 768px)": {
+            flexDirection: "column",
+            justifyContent: "center",
+            rowGap: "16px",
+          },
         }}
       >
         <TextField
@@ -32,7 +37,15 @@ const AddressInput = () => {
             borderColor: "#E3EBEF",
           }}
         ></TextField>
-        <Button variant="contained" sx={{ width: "205px" }}>
+        <Button
+          variant="contained"
+          sx={{
+            width: "205px",
+            "@media (max-width: 768px)": {
+              width: "100%",
+            },
+          }}
+        >
           exchange
         </Button>
       </Box>
