@@ -1,0 +1,21 @@
+.nestedRightBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 8px;
+  min-width: 150px;
+}
+.nestedButton {
+  width: 16px;
+  height: 32px;
+  align-items: center;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.arrowDown {
+  width: 16px;
+  height: 16px;
+}

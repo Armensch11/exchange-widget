@@ -94,6 +94,10 @@ const WrapperForInputs = () => {
       <Button
         onClick={handleSwapClick}
         sx={{
+          "&:focus": {
+            outline: "none",
+            boxShadow: "none",
+          },
           "@media (max-width: 767px)": {
             transform: "rotate(90deg)",
             alignSelf: "flex-end",

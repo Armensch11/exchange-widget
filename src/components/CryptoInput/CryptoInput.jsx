@@ -60,7 +60,7 @@ const CryptoInput = ({
                 onCryptoChange={onCryptoChange}
                 listOfCurrencies={listOfCurrencies}
                 parentWidth={inputWidth}
-              />
+                  />
             </InputAdornment>
           ),
         }}
