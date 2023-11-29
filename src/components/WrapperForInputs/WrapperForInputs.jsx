@@ -9,7 +9,6 @@ import getEstimatedAmount from "../../utils/getEstimatedAmount";
 import styles from "./WrapperForInputs.module.css";
 import swap from "../../assets/swap.svg";
 
-
 const WrapperForInputs = () => {
   const [selectedCrypto1, setSelectedCrypto1] = useState("btc");
   const [selectedCrypto2, setSelectedCrypto2] = useState("eth");
@@ -17,8 +16,8 @@ const WrapperForInputs = () => {
   const [leftCryptoURL, setLeftCryptoURL] = useState(BTC_ICON_URL);
   const [rightCryptoURL, setRightCryptoURL] = useState(ETH_ICON_URL);
   const [listOfCurrencies, setListOfCurrencies] = useState([]);
-  const [minAmount, setMinAmount] = useState(0);
-  const [estimatedAmount, setEstimatedAmount] = useState(0);
+  const [minAmount, setMinAmount] = useState("0");
+  const [estimatedAmount, setEstimatedAmount] = useState("-");
   const [enteredAmount, setEnteredAmount] = useState("");
 
   const handleSwapClick = () => {
@@ -54,17 +53,22 @@ const WrapperForInputs = () => {
           selectedCrypto2
         );
 
-        setMinAmount(minAmountHolder.minAmount);
-        const sendAmount = enteredAmount
-          ? enteredAmount
-          : minAmountHolder.minAmount;
-        const estimatedAmountHolder = await getEstimatedAmount(
-          sendAmount,
-          selectedCrypto1,
-          selectedCrypto2
-        );
-        console.log(estimatedAmountHolder);
-        setEstimatedAmount(estimatedAmountHolder);
+        setMinAmount(minAmountHolder.minAmount.toString());
+        if (enteredAmount && +enteredAmount < minAmountHolder.minAmount) {
+          setEstimatedAmount("null");
+        } else {
+          const sendAmount = enteredAmount
+            ? enteredAmount
+            : minAmountHolder.minAmount;
+
+          const estimatedAmountHolder = await getEstimatedAmount(
+            sendAmount,
+            selectedCrypto1,
+            selectedCrypto2
+          );
+        
+          setEstimatedAmount(estimatedAmountHolder.toString());
+        }
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -93,7 +97,6 @@ const WrapperForInputs = () => {
         onCryptoChange={(value) => setSelectedCrypto2(value)}
         listOfCurrencies={listOfCurrencies}
       />
-  
     </div>
   );
 };

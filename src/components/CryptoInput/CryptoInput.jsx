@@ -20,7 +20,7 @@ const CryptoInput = ({
   const [inputWidth, setInputWidth] = useState(null);
 
   const handleAmountChange = (event) => {
-    onChange(+event.target.value);
+    onChange(event.target.value);
   };
   const inputRef = useRef(null);
 
@@ -74,6 +74,6 @@ CryptoInput.propTypes = {
   onCryptoChange: PropTypes.func.isRequired,
   onChange: PropTypes.func,
   listOfCurrencies: PropTypes.arrayOf(PropTypes.any).isRequired,
-  value: PropTypes.number,
+  value: PropTypes.string,
 };
 export default CryptoInput;
