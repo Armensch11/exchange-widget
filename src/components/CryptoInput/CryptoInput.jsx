@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
 import {
   TextField,
   InputAdornment,
@@ -7,6 +8,7 @@ import {
 } from "@mui/material";
 import lineVertical from "../../assets/lineVertical.svg";
 import VirtualizedSelect from "../VirtualizedSelect/VirtualizedSelect";
+
 const CryptoInput = ({
   ticker,
   tickerIconURL,
@@ -15,12 +17,26 @@ const CryptoInput = ({
   value,
   onChange,
 }) => {
+  const [inputWidth, setInputWidth] = useState(null);
+
   const handleAmountChange = (event) => {
     onChange(+event.target.value);
   };
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      setInputWidth(inputRef.current.clientWidth);
+    }
+  }, []);
 
   return (
-    <FormControl variant="outlined" fullWidth sx={{ width: "450px" }}>
+    <FormControl
+      variant="outlined"
+      fullWidth
+      sx={{ maxWidth: "450px", minWidth: "300px" }}
+      ref={inputRef}
+    >
       <InputLabel htmlFor="crypto-amount"></InputLabel>
       <TextField
         id="crypto-amount"
@@ -43,6 +59,7 @@ const CryptoInput = ({
                 tickerIconURL={tickerIconURL}
                 onCryptoChange={onCryptoChange}
                 listOfCurrencies={listOfCurrencies}
+                parentWidth={inputWidth}
               />
             </InputAdornment>
           ),

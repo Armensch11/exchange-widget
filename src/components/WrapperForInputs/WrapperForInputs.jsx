@@ -9,6 +9,7 @@ import getEstimatedAmount from "../../utils/getEstimatedAmount";
 import styles from "./WrapperForInputs.module.css";
 import swap from "../../assets/swap.svg";
 
+
 const WrapperForInputs = () => {
   const [selectedCrypto1, setSelectedCrypto1] = useState("btc");
   const [selectedCrypto2, setSelectedCrypto2] = useState("eth");
@@ -92,6 +93,7 @@ const WrapperForInputs = () => {
         onCryptoChange={(value) => setSelectedCrypto2(value)}
         listOfCurrencies={listOfCurrencies}
       />
+  
     </div>
   );
 };
