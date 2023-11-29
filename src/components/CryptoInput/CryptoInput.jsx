@@ -40,7 +40,7 @@ const CryptoInput = ({
       <InputLabel htmlFor="crypto-amount"></InputLabel>
       <TextField
         id="crypto-amount"
-        type="number"
+        type="text"
         variant="outlined"
         fullWidth
         value={value}

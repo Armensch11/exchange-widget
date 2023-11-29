@@ -48,27 +48,32 @@ const WrapperForInputs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const minAmountHolder = await getMinAmount(
+        const minAmountData = await getMinAmount(
           selectedCrypto1,
           selectedCrypto2
         );
+        setMinAmount(minAmountData.minAmount.toString());
 
-        setMinAmount(minAmountHolder.minAmount.toString());
-        if (enteredAmount && +enteredAmount < minAmountHolder.minAmount) {
-          setEstimatedAmount("null");
+        let estimatedAmountHolder = "--";
+
+        if (enteredAmount) {
+          const sendAmount = enteredAmount;
+          if (+sendAmount >= minAmountData.minAmount) {
+            estimatedAmountHolder = await getEstimatedAmount(
+              sendAmount,
+              selectedCrypto1,
+              selectedCrypto2
+            );
+          }
         } else {
-          const sendAmount = enteredAmount
-            ? enteredAmount
-            : minAmountHolder.minAmount;
-
-          const estimatedAmountHolder = await getEstimatedAmount(
-            sendAmount,
+          estimatedAmountHolder = await getEstimatedAmount(
+            minAmountData.minAmount,
             selectedCrypto1,
             selectedCrypto2
           );
-        
-          setEstimatedAmount(estimatedAmountHolder.toString());
         }
+
+        setEstimatedAmount(estimatedAmountHolder.toString());
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -76,7 +81,6 @@ const WrapperForInputs = () => {
 
     fetchData();
   }, [selectedCrypto1, selectedCrypto2, enteredAmount]);
-
   return (
     <div className={styles.WrapperForInputs}>
       <CryptoInput
