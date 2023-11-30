@@ -19,7 +19,10 @@ const CryptoInput = ({
 }) => {
   const [inputWidth, setInputWidth] = useState(null);
 
+
   const handleAmountChange = (event) => {
+    // console.log("New value:", event.target.value);
+
     onChange(event.target.value);
   };
   const inputRef = useRef(null);
@@ -60,7 +63,7 @@ const CryptoInput = ({
                 onCryptoChange={onCryptoChange}
                 listOfCurrencies={listOfCurrencies}
                 parentWidth={inputWidth}
-                  />
+              />
             </InputAdornment>
           ),
         }}
