@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import CryptoInput from "../CryptoInput/CryptoInput";
 import { Button } from "@mui/material";
@@ -64,7 +63,7 @@ const WrapperForInputs = () => {
           selectedCrypto1,
           selectedCrypto2
         );
-        +enteredAmount > minAmountData.minAmount
+        +enteredAmount >= minAmountData.minAmount
           ? setEstimatedAmount(estimatedAmountHolder.toString())
           : setEstimatedAmount("--");
       } catch (error) {
